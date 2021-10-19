@@ -240,7 +240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   columns: 9
   rows: 9
-  squareOffset: 2.5
+  squareOffset: 10
   squareScale: 0.9
   gridSquare: {fileID: 1169175869403280916, guid: f2b3201ebeed6184493fb41079c068b0, type: 3}
   startPosition: {x: -435, y: 442}
@@ -288,7 +288,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.2264151, g: 0.22086152, b: 0.22086152, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
