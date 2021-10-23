@@ -16,6 +16,7 @@ public class SudokuGrid : MonoBehaviour
     public Vector2 startPosition = new Vector2(0.0f, 0.0f);
 
     private List<GameObject> gridSquares = new List<GameObject> { };
+    private int selectedGridData = -1;
 
     private void SpawnGridSquares()
     {
@@ -57,12 +58,22 @@ public class SudokuGrid : MonoBehaviour
         }
     }
 
-    private void SetGridNumber()
+    private void SetGridNumber(string level)
     {
-        foreach (var square in gridSquares)
+        /*foreach (var square in gridSquares)
         {
             square.GetComponent<GridSquare>().SetNumber(Random.Range(0, 10));
-        }
+        }*/
+        selectedGridData = Random.Range(0, SudokuData.Instance.sudokuGame[level].Count);
+
+        var data = SudokuData.Instance.sudokuGame[level][selectedGridData];
+        SetGridSquareData(data);
+    }
+
+    private void SetGridSquareData(SudokuData.SudokuBoardData data)
+    {
+        for (int i = 0; i < gridSquares.Count; i++)
+            gridSquares[i].GetComponent<GridSquare>().SetNumber(data.unsolvedData[i]);
     }
 
     private void CreateGrid()
@@ -77,7 +88,7 @@ public class SudokuGrid : MonoBehaviour
             Debug.LogError("This game object needs to have the GridSquare script attached!");
 
         CreateGrid();
-        SetGridNumber();
+        SetGridNumber("Easy");
     }
 
     // Update is called once per frame
