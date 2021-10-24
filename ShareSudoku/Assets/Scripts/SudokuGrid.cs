@@ -88,7 +88,7 @@ public class SudokuGrid : MonoBehaviour
             Debug.LogError("This game object needs to have the GridSquare script attached!");
 
         CreateGrid();
-        SetGridNumber("Easy");
+        SetGridNumber(DifficultySettings.difInstance.GetGameMode());
     }
 
     // Update is called once per frame
