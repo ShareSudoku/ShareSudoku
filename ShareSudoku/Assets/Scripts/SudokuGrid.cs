@@ -20,11 +20,14 @@ public class SudokuGrid : MonoBehaviour
 
     private void SpawnGridSquares()
     {
+        int squareIndex = 0;
+
         for (int row = 0; row < rows; row++)
         {
             for (int collumn = 0; collumn < columns; collumn++)
             {
                 gridSquares.Add(Instantiate(gridSquare) as GameObject);
+                gridSquares[gridSquares.Count - 1].GetComponent<GridSquare>().SetSquareIndex(squareIndex);
                 gridSquares[gridSquares.Count - 1].transform.parent = this.transform;
                 gridSquares[gridSquares.Count - 1].transform.localScale = new Vector3(squareScale, squareScale, squareScale);
             }
