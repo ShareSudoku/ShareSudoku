@@ -30,6 +30,8 @@ public class SudokuGrid : MonoBehaviour
                 gridSquares[gridSquares.Count - 1].GetComponent<GridSquare>().SetSquareIndex(squareIndex);
                 gridSquares[gridSquares.Count - 1].transform.parent = this.transform;
                 gridSquares[gridSquares.Count - 1].transform.localScale = new Vector3(squareScale, squareScale, squareScale);
+
+                squareIndex++;
             }
         }
     } 
@@ -76,7 +78,11 @@ public class SudokuGrid : MonoBehaviour
     private void SetGridSquareData(SudokuData.SudokuBoardData data)
     {
         for (int i = 0; i < gridSquares.Count; i++)
+        {
             gridSquares[i].GetComponent<GridSquare>().SetNumber(data.unsolvedData[i]);
+            gridSquares[i].GetComponent<GridSquare>().SetCorrectNum(data.solvedData[i]);
+            gridSquares[i].GetComponent<GridSquare>().SetSquareHasDefaultValue(data.unsolvedData[i] != 0 && data.unsolvedData[i] == data.solvedData[i]);
+        }
     }
 
     private void CreateGrid()

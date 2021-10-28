@@ -10,9 +10,21 @@ public class GridSquare : Selectable, IPointerClickHandler, ISubmitHandler, IPoi
 
     public GameObject numberText;
     private int number_ = 0;
+    private int correctNumber = 0;
 
     private bool sqSelected_ = false;
     private int squareIndex_ = -1;
+    private bool has_default_value = false;
+
+    public void SetSquareHasDefaultValue(bool defaultSquareVal)
+    {
+        has_default_value = defaultSquareVal;
+    }
+
+    public bool GetIfSquareHasDefaultValue()
+    {
+        return has_default_value;
+    }
 
     public bool IsSelected()
     {
@@ -22,6 +34,11 @@ public class GridSquare : Selectable, IPointerClickHandler, ISubmitHandler, IPoi
     public void SetSquareIndex(int index)
     {
         squareIndex_ = index;
+    }
+
+    public void SetCorrectNum(int number)
+    {
+        correctNumber = number;
     }
     // Start is called before the first frame update
     void Start()
@@ -47,7 +64,7 @@ public class GridSquare : Selectable, IPointerClickHandler, ISubmitHandler, IPoi
     public void SetNumber(int number)
     {
         number_ = number;
-        DisplayText();
+        DisplayText();        
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -75,10 +92,26 @@ public class GridSquare : Selectable, IPointerClickHandler, ISubmitHandler, IPoi
 
     public void OnSetNumber(int number)
     {
-        if (sqSelected_)
+        if (sqSelected_ && has_default_value == false)
+        {
             SetNumber(number);
-    }
+            if (number_ != correctNumber)
+            {
+                var colors = this.colors;
+                colors.normalColor = Color.red;
+                this.colors = colors;
 
+                GameEvents.OnWrongNumberMethod();
+            }
+            else
+            {
+                has_default_value = true;
+                var colors = this.colors;
+                colors.normalColor = Color.white;
+                this.colors = colors;
+            }
+        }
+    }
     public void OnSquareSelected(int squareIndex)
     {
         if (squareIndex_ != squareIndex)
