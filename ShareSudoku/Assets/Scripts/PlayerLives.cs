@@ -6,6 +6,7 @@ public class PlayerLives : MonoBehaviour
 {
 
     public List<GameObject> errorXs;
+    public GameObject gameOverPopUp;
 
     private int lives = 0;
     private int errorNum = 0;
@@ -23,6 +24,16 @@ public class PlayerLives : MonoBehaviour
             errorXs[errorNum].SetActive(true);
             errorNum++;
             lives--;
+        }
+
+        CheckGameOver();
+    }
+
+    private void CheckGameOver()
+    {
+        if (lives <= 0)
+        {
+            gameOverPopUp.SetActive(true);
         }
     }
 
