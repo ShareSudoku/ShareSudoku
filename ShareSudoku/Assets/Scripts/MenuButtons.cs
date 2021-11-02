@@ -44,4 +44,10 @@ public class MenuButtons : MonoBehaviour
     {
         obj.SetActive(false);
     }
+
+    public void SetPause(bool paused)
+    {
+        DifficultySettings.difInstance.SetPaused(paused);
+
+    }
 }

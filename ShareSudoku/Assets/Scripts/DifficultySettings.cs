@@ -17,6 +17,7 @@ public class DifficultySettings : MonoBehaviour
     
     private void Awake()
     {
+        isPaused = false;
         if (difInstance == null)
         {
             DontDestroyOnLoad(this);
@@ -27,6 +28,11 @@ public class DifficultySettings : MonoBehaviour
     }
 
     private GameMode _GameMode;
+    private bool isPaused = false;
+
+    public void SetPaused(bool paused) { isPaused = paused; }
+
+    public bool GetPaused() { return isPaused; }
 
     private void Start()
     {
