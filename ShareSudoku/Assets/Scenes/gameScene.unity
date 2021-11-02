@@ -659,9 +659,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   columns: 9
   rows: 9
-  squareOffset: 3
+  squareOffset: 2.5
   squareScale: 0.9
-  squareGap: 4
+  squareGap: 5
   gridSquare: {fileID: 1169175869403280916, guid: f2b3201ebeed6184493fb41079c068b0, type: 3}
   startPosition: {x: -435, y: 442}
 --- !u!222 &331593673
