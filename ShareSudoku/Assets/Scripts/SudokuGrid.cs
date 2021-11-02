@@ -10,6 +10,7 @@ public class SudokuGrid : MonoBehaviour
 
     public float squareOffset = 0.0f;
     public float squareScale = 1.0f;
+    public float squareGap = 0.2f;
 
     public GameObject gridSquare;
 
@@ -40,6 +41,9 @@ public class SudokuGrid : MonoBehaviour
     {
         var squareRect = gridSquares[0].GetComponent<RectTransform>();
         Vector2 offset = new Vector2();
+        Vector2 squareGapNum = new Vector2(0.0f, 0.0f);
+        bool rowMoved = false;
+
         offset.x = squareRect.rect.width * squareRect.transform.localScale.x + squareOffset;
         offset.y = squareRect.rect.height * squareRect.transform.localScale.y + squareOffset;
 
@@ -52,11 +56,25 @@ public class SudokuGrid : MonoBehaviour
             {
                 rowNum++;
                 columnNum = 0;
+                squareGapNum.x = 0;
+                rowMoved = false;
             }
 
-            var posXoffset = offset.x * columnNum;
-            var posYoffset = offset.y * rowNum;
+            var posXoffset = offset.x * columnNum + (squareGapNum.x*squareGap);
+            var posYoffset = offset.y * rowNum + (squareGapNum.y*squareGap);
 
+            if (columnNum > 0 && columnNum % 3 == 0)
+            {
+                squareGapNum.x++;
+                posXoffset += squareGap;
+
+            }
+            if (rowNum > 0 && rowNum % 3 == 0 && rowMoved == false)
+            {
+                rowMoved = true;
+                squareGapNum.y++;
+                posYoffset += squareGap;
+            }
 
             square.GetComponent<RectTransform>().anchoredPosition = new Vector2(startPosition.x + posXoffset, startPosition.y - posYoffset);
             columnNum++;
