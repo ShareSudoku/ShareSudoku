@@ -33,4 +33,14 @@ public class GameEvents : MonoBehaviour
         if (OnWrongNumber != null)
             OnWrongNumber();
     }
+
+    public delegate void NoteActive(bool active);
+
+    public static event NoteActive OnNoteActive;
+
+    public static void OnNoteActiveMethod(bool active)
+    {
+        if (OnNoteActive != null)
+            OnNoteActive(active);
+    }
 }
