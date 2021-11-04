@@ -11,6 +11,7 @@ public class SudokuGrid : MonoBehaviour
     public float squareOffset = 0.0f;
     public float squareScale = 1.0f;
     public float squareGap = 0.2f;
+    public Color lineHighlightCol = Color.green;
 
     public GameObject gridSquare;
 
@@ -35,7 +36,7 @@ public class SudokuGrid : MonoBehaviour
                 squareIndex++;
             }
         }
-    } 
+    }
 
     private void SetSquarePos()
     {
@@ -60,8 +61,8 @@ public class SudokuGrid : MonoBehaviour
                 rowMoved = false;
             }
 
-            var posXoffset = offset.x * columnNum + (squareGapNum.x*squareGap);
-            var posYoffset = offset.y * rowNum + (squareGapNum.y*squareGap);
+            var posXoffset = offset.x * columnNum + (squareGapNum.x * squareGap);
+            var posYoffset = offset.y * rowNum + (squareGapNum.y * squareGap);
 
             if (columnNum > 0 && columnNum % 3 == 0)
             {
@@ -111,7 +112,7 @@ public class SudokuGrid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(gridSquare.GetComponent<GridSquare>() == null)
+        if (gridSquare.GetComponent<GridSquare>() == null)
             Debug.LogError("This game object needs to have the GridSquare script attached!");
 
         CreateGrid();
@@ -121,6 +122,40 @@ public class SudokuGrid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.UpdateSelectedSquare += OnSquareSelected;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.UpdateSelectedSquare -= OnSquareSelected;
+    }
+
+    private void SetSquareColors(int[] data, Color col)
+    {
+        foreach(var i in data)
+        {
+            var comp = gridSquares[i].GetComponent<GridSquare>();
+            if (comp.IsSelected() == false && comp.HasWrongValue() == false)
+            {
+                comp.SetSquareColour(col);
+            }
+        }
+    }
+
+    public void OnSquareSelected(int squareIndex)
+    {
+        var horizLine = HighlightLine.instanceH.GetHorizontalLine(squareIndex);
+        var verticalLine = HighlightLine.instanceH.GetVerticalLine(squareIndex);
+        var square = HighlightLine.instanceH.GetSquare(squareIndex);
+
+        SetSquareColors(HighlightLine.instanceH.GetAllSquareIndexes(), Color.white);
+        SetSquareColors(horizLine, lineHighlightCol);
+        SetSquareColors(verticalLine, lineHighlightCol);
+        SetSquareColors(square, lineHighlightCol);
     }
 }
