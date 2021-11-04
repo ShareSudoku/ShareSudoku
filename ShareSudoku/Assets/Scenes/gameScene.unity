@@ -662,6 +662,7 @@ MonoBehaviour:
   squareOffset: 2.5
   squareScale: 0.9
   squareGap: 5
+  lineHighlightCol: {r: 0.03147021, g: 0.9811321, b: 0.8125628, a: 0.40392157}
   gridSquare: {fileID: 1169175869403280916, guid: f2b3201ebeed6184493fb41079c068b0, type: 3}
   startPosition: {x: -435, y: 442}
 --- !u!222 &331593673
@@ -1678,6 +1679,7 @@ GameObject:
   - component: {fileID: 843309462}
   - component: {fileID: 843309465}
   - component: {fileID: 843309466}
+  - component: {fileID: 843309467}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1777,6 +1779,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff933f3cdc1892e4e8ace86d541bfc59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &843309467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843309461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb3960ec048ef1408791315e9be9824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &873101963
