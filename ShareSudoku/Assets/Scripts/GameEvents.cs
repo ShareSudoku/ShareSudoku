@@ -43,4 +43,14 @@ public class GameEvents : MonoBehaviour
         if (OnNoteActive != null)
             OnNoteActive(active);
     }
+
+    public delegate void Eraser();
+
+    public static event Eraser OnEraseNumber;
+
+    public static void OnEraseNumberMethod()
+    {
+        if (OnEraseNumber != null)
+            OnEraseNumber();
+    }
 }
