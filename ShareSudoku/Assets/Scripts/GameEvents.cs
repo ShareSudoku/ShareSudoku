@@ -53,4 +53,24 @@ public class GameEvents : MonoBehaviour
         if (OnEraseNumber != null)
             OnEraseNumber();
     }
+
+    public delegate void BoardCompleted();
+
+    public static event BoardCompleted OnBoardCompleted;
+
+    public static void OnBoardCompletedMethod()
+    {
+        if (OnBoardCompleted != null)
+            OnBoardCompleted();
+    }
+
+    public delegate void CheckBoard();
+
+    public static event CheckBoard OnCheckBoard;
+
+    public static void OnCheckBoardMethod()
+    {
+        if (OnCheckBoard != null)
+            OnCheckBoard();
+    }
 }
