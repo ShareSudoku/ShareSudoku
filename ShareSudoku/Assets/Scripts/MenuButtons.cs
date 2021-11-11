@@ -48,6 +48,5 @@ public class MenuButtons : MonoBehaviour
     public void SetPause(bool paused)
     {
         DifficultySettings.difInstance.SetPaused(paused);
-
     }
 }
