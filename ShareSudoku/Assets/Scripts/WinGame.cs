@@ -7,16 +7,19 @@ public class WinGame : MonoBehaviour
 {
 
     public GameObject winPopUp;
+    public Text textTimer;
 
     // Start is called before the first frame update
     void Start()
     {
         winPopUp.SetActive(false);
+        textTimer.text = GameTimer.timerInstance.GetCurrentTime().text;
     }
 
     private void OnBoardCompleted()
     {
         winPopUp.SetActive(true);
+        textTimer.text = GameTimer.timerInstance.GetCurrentTime().text;
     }
 
     private void OnEnable()
