@@ -10,7 +10,7 @@ public class SudokuGrid : MonoBehaviour
 
     public float squareOffset = 0.0f;
     public float squareScale = 1.0f;
-    public float squareGap = 0.2f;
+    public float squareGap = 0.1f;
     public Color lineHighlightCol = Color.green;
 
     public GameObject gridSquare;
