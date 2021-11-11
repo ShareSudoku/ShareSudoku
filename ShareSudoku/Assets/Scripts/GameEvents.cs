@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameEvents : MonoBehaviour
 {
     public delegate void UpdateSqNum(int number);
-    
     public static event UpdateSqNum OnUpdateSqNum;
 
     public static void UpdateSqNumMethod(int number)
@@ -15,7 +14,6 @@ public class GameEvents : MonoBehaviour
     }
 
     public delegate void SelectedSquare(int squareIndex);
-
     public static event SelectedSquare UpdateSelectedSquare;
 
     public static void SquareSelectedMethod(int squareIndex)
@@ -25,7 +23,6 @@ public class GameEvents : MonoBehaviour
     }
 
     public delegate void WrongNumber();
-
     public static event WrongNumber OnWrongNumber;
 
     public static void OnWrongNumberMethod()
@@ -35,7 +32,6 @@ public class GameEvents : MonoBehaviour
     }
 
     public delegate void NoteActive(bool active);
-
     public static event NoteActive OnNoteActive;
 
     public static void OnNoteActiveMethod(bool active)
@@ -45,7 +41,6 @@ public class GameEvents : MonoBehaviour
     }
 
     public delegate void Eraser();
-
     public static event Eraser OnEraseNumber;
 
     public static void OnEraseNumberMethod()
@@ -55,7 +50,6 @@ public class GameEvents : MonoBehaviour
     }
 
     public delegate void BoardCompleted();
-
     public static event BoardCompleted OnBoardCompleted;
 
     public static void OnBoardCompletedMethod()
@@ -65,12 +59,20 @@ public class GameEvents : MonoBehaviour
     }
 
     public delegate void CheckBoard();
-
     public static event CheckBoard OnCheckBoard;
 
     public static void OnCheckBoardMethod()
     {
         if (OnCheckBoard != null)
             OnCheckBoard();
+    }
+
+    public delegate void GameOver();  
+    public static event GameOver OnGameOver;
+
+    public static void OnGameOverMethod()
+    {
+        if (OnGameOver != null)
+            OnGameOver();
     }
 }
