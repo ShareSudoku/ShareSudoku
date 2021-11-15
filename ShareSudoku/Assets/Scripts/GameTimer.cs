@@ -70,6 +70,11 @@ public class GameTimer : MonoBehaviour
         GameEvents.OnGameOver -= OnGameOver;
     }
 
+    public static string GetTime()
+    {
+        return timerInstance.dTime.ToString();
+    } 
+
     public Text GetCurrentTime()
     {
         return textTimer;
