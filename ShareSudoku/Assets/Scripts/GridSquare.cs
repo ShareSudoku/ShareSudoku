@@ -22,6 +22,11 @@ public class GridSquare : Selectable, IPointerClickHandler, ISubmitHandler, IPoi
     private bool has_default_value = false;
     private bool has_wrong_value = false;
 
+    public int GetSqNum()
+    {
+        return number_;
+    }
+
     public bool IsCorrect()
     {
         return number_ == correctNumber;
