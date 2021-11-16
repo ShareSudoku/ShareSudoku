@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DifficultySettings : MonoBehaviour
+public class GameSettings : MonoBehaviour
 {
     public enum GameMode
     {
@@ -13,15 +13,38 @@ public class DifficultySettings : MonoBehaviour
         VeryHard
     };
 
-    public static DifficultySettings difInstance;
+    private bool loadPreviousGame = false;
+    private bool exitOnWin = false;
+    public static GameSettings gsInstance;
     
+    public void setExitOnWin(bool set)
+    {
+        exitOnWin = set;
+        loadPreviousGame = false;
+    }
+
+    public bool GetExitOnWin()
+    {
+        return exitOnWin;
+    }
+
+    public void SetLoadGamed(bool loadGame)
+    {
+        loadPreviousGame = loadGame;
+    }
+
+    public bool GetLoadPrevGame()
+    {
+        return loadPreviousGame;
+    }
+
     private void Awake()
     {
         isPaused = false;
-        if (difInstance == null)
+        if (gsInstance == null)
         {
             DontDestroyOnLoad(this);
-            difInstance = this;
+            gsInstance = this;
         }
         else
             Destroy(this);
@@ -37,6 +60,7 @@ public class DifficultySettings : MonoBehaviour
     private void Start()
     {
         _GameMode = GameMode.NOT_SET;
+        loadPreviousGame = false;
     }
 
     public void SetGameMode(GameMode mode)
