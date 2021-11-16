@@ -37,7 +37,7 @@ public class GameTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(DifficultySettings.difInstance.GetPaused() == false && timerStop == false)
+        if(GameSettings.gsInstance.GetPaused() == false && timerStop == false)
         {
             dTime += Time.deltaTime;
             TimeSpan tSpan = TimeSpan.FromSeconds(dTime);
