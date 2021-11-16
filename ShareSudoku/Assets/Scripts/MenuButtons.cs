@@ -12,25 +12,25 @@ public class MenuButtons : MonoBehaviour
 
     public void LoadEasyGame(string name)
     {
-        DifficultySettings.difInstance.SetGameMode(DifficultySettings.GameMode.Easy);
+        GameSettings.gsInstance.SetGameMode(GameSettings.GameMode.Easy);
         SceneManager.LoadScene(name);
     }
 
     public void LoadMediumGame(string name)
     {
-        DifficultySettings.difInstance.SetGameMode(DifficultySettings.GameMode.Medium);
+        GameSettings.gsInstance.SetGameMode(GameSettings.GameMode.Medium);
         SceneManager.LoadScene(name);
 
     }
     public void LoadHardGame(string name)
     {
-        DifficultySettings.difInstance.SetGameMode(DifficultySettings.GameMode.Hard);
+        GameSettings.gsInstance.SetGameMode(GameSettings.GameMode.Hard);
         SceneManager.LoadScene(name);
 
     }
     public void LoadVeryHardGame(string name)
     {
-        DifficultySettings.difInstance.SetGameMode(DifficultySettings.GameMode.VeryHard);
+        GameSettings.gsInstance.SetGameMode(GameSettings.GameMode.VeryHard);
         SceneManager.LoadScene(name);
     }
 
@@ -47,6 +47,6 @@ public class MenuButtons : MonoBehaviour
 
     public void SetPause(bool paused)
     {
-        DifficultySettings.difInstance.SetPaused(paused);
+        GameSettings.gsInstance.SetPaused(paused);
     }
 }
