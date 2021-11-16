@@ -10,6 +10,17 @@ public class PlayerLives : MonoBehaviour
 
     private int lives = 0;
     private int errorNum = 0;
+
+    public static PlayerLives lInstance;
+
+    private void Awake()
+    {
+        if (lInstance)
+            Destroy(this);
+        
+        lInstance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +47,11 @@ public class PlayerLives : MonoBehaviour
             GameEvents.OnGameOverMethod();
             gameOverPopUp.SetActive(true);
         }
+    }
+
+    public int GetErrorNums()
+    {
+        return errorNum;
     }
 
     private void OnEnable()
