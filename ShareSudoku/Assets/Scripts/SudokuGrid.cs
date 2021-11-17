@@ -116,13 +116,35 @@ public class SudokuGrid : MonoBehaviour
             Debug.LogError("This game object needs to have the GridSquare script attached!");
 
         CreateGrid();
-        SetGridNumber(DifficultySettings.difInstance.GetGameMode());
+
+        if (GameSettings.gsInstance.GetLoadPrevGame())
+            LoadGrid();
+        else
+            SetGridNumber(GameSettings.gsInstance.GetGameMode());
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    void LoadGrid()
+    {
+        string level = GameSettings.gsInstance.GetGameMode();
+        selectedGridData = Configuration.ReadGameBoardLevel();
+        var data = Configuration.ReadGridData();
+
+        SetGridSquareData(data);
+        LoadGridNotes(Configuration.GetGridNotes());
+    }
+
+    private void LoadGridNotes(Dictionary<int, List<int>> notes)
+    {
+        foreach(var note in notes)
+        {
+            gridSquares[note.Key].GetComponent<GridSquare>().SetGridNotes(note.Value);
+        }
     }
 
     private void OnEnable()
@@ -135,6 +157,32 @@ public class SudokuGrid : MonoBehaviour
     {
         GameEvents.UpdateSelectedSquare -= OnSquareSelected;
         GameEvents.OnCheckBoard -= CheckBoardCompleted;
+
+        var solvedData = SudokuData.Instance.sudokuGame[GameSettings.gsInstance.GetGameMode()][selectedGridData].solvedData;
+        int[] unsolvedData = new int[81];
+        Dictionary<string, List<string>> gridNotes = new Dictionary<string, List<string>>();
+
+        for(int i = 0; i < gridSquares.Count; i++)
+        {
+            var component = gridSquares[i].GetComponent<GridSquare>();
+            unsolvedData[i] = component.GetSqNum();
+
+            string key = "squareNote:" + i.ToString();
+            gridNotes.Add(key, component.GetSquareNotes());
+        }
+
+        SudokuData.SudokuBoardData currentData = new SudokuData.SudokuBoardData(unsolvedData, solvedData);
+
+        if (GameSettings.gsInstance.GetExitOnWin() == false) //don't save the game data if a player exits the game upon winning
+            Configuration.SaveboardData(currentData, 
+                GameSettings.gsInstance.GetGameMode(),
+                selectedGridData, 
+                PlayerLives.lInstance.GetErrorNums(), 
+                gridNotes);
+        else
+            Configuration.DeleteDataFile();
+
+        GameSettings.gsInstance.SetExitOnWin(false);
     }
 
     private void SetSquareColors(int[] data, Color col)
