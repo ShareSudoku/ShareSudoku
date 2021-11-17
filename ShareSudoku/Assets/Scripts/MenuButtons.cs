@@ -49,4 +49,14 @@ public class MenuButtons : MonoBehaviour
     {
         GameSettings.gsInstance.SetPaused(paused);
     }
+
+    public void LoadPrevGame(bool load)
+    {
+        GameSettings.gsInstance.SetLoadedGame(load);
+    }
+
+    public void WinExitBT()
+    {
+        GameSettings.gsInstance.SetExitOnWin(true);
+    }
 }
