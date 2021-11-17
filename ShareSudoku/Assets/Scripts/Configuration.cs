@@ -39,7 +39,7 @@ public class Configuration : MonoBehaviour
         }
         foreach (var solvedData in boardData.solvedData)
         {
-            solved +=solvedData.ToString() + ",";
+            solved += solvedData.ToString() + ",";
 
         }
         
@@ -85,6 +85,7 @@ public class Configuration : MonoBehaviour
                 List<int> notes = new List<int>();
 
                 int.TryParse(word[1], out squareIndex);
+
                 string[] subString = Regex.Split(word[2], ",");
 
                 foreach(var note in subString)
@@ -94,7 +95,7 @@ public class Configuration : MonoBehaviour
                     if (noteNum > 0)
                         notes.Add(noteNum);
                 }
-                    gridNotes.Add(squareIndex, notes);
+                gridNotes.Add(squareIndex, notes);
             }
 
         }
@@ -160,7 +161,7 @@ public class Configuration : MonoBehaviour
                     int squareNum = -1;
                     if (int.TryParse(value, out squareNum)) 
                     {
-                        solvedData[unsolvedIndex] = squareNum;
+                        solvedData[solvedIndex] = squareNum;
                         solvedIndex++;
                     }
 
@@ -196,7 +197,7 @@ public class Configuration : MonoBehaviour
         float time = -1.0f;
         string line;
 
-        StringReader file = new StringReader(fPath);
+        StreamReader file = new StreamReader(fPath);
         while ((line = file.ReadLine()) != null)
         {
             string[] word = line.Split(':');
