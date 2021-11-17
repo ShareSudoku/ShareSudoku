@@ -25,7 +25,11 @@ public class GameTimer : MonoBehaviour
         timerInstance = this;
 
         textTimer = GetComponent<Text>();
-        dTime = 0;
+
+        if (GameSettings.gsInstance.GetLoadPrevGame())
+            dTime = Configuration.ReadGameTime();
+        else
+            dTime = 0;
     }
 
     // Start is called before the first frame update
