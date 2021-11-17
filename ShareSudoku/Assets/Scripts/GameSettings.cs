@@ -17,7 +17,7 @@ public class GameSettings : MonoBehaviour
     private bool exitOnWin = false;
     public static GameSettings gsInstance;
     
-    public void setExitOnWin(bool set)
+    public void SetExitOnWin(bool set)
     {
         exitOnWin = set;
         loadPreviousGame = false;
@@ -28,7 +28,7 @@ public class GameSettings : MonoBehaviour
         return exitOnWin;
     }
 
-    public void SetLoadGamed(bool loadGame)
+    public void SetLoadedGame(bool loadGame)
     {
         loadPreviousGame = loadGame;
     }
