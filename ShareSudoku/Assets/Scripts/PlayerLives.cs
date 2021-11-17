@@ -26,6 +26,17 @@ public class PlayerLives : MonoBehaviour
     {
         lives = errorXs.Count;
         errorNum = 0;
+
+        if (GameSettings.gsInstance.GetLoadPrevGame())
+        {
+            errorNum = Configuration.ReadErrorNum();
+            lives = errorXs.Count - errorNum;
+
+            for(int err = 0; err < errorNum; err++)
+            {
+                errorXs[err].SetActive(true);
+            }
+        }
     }
 
     private void WrongNumber()
